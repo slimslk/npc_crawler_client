@@ -1,0 +1,5 @@
+.idea/
+__pycache__/
+config_dev.json
+.venv/
+.DS_Store
