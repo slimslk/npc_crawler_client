@@ -1,6 +1,6 @@
 import json
 
-with open("config_dev.json", "r") as config:
+with open("config.json", "r") as config:
     config = json.load(config)
 
 server_url = config["server_url"]
