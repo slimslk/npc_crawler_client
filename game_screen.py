@@ -39,11 +39,20 @@ class GameScreen:
         # Start drawing map below top status line
         map_offset_y = top_surface.get_height() + 2  # extra 2 px space
         render_map_start_position_x = player_x - self.display_map_height // 2
+        render_map_end_position_x = player_x + self.display_map_height // 2
         render_map_start_position_y = player_y - self.display_map_width // 2
+        render_map_end_position_y = player_y + self.display_map_width // 2
+
+        if render_map_end_position_x > map_height:
+            render_map_start_position_x = render_map_start_position_x - (render_map_end_position_x - map_height)
+        if render_map_end_position_y > map_width:
+            render_map_start_position_y = render_map_start_position_y - (render_map_end_position_y - map_width)
+
         if render_map_start_position_x < 0:
             render_map_start_position_x = 0
         if render_map_start_position_y < 0:
             render_map_start_position_y = 0
+
         for y in range(self.display_map_width):
             if render_map_start_position_y + y > map_width - 1:
                 break
@@ -59,7 +68,6 @@ class GameScreen:
                     raise IndexError
                 img = self.font.render(char, True, color)
                 self.screen.blit(img, (y * cell_width, map_offset_y + x * cell_height))
-            print()
 
         # --- Bottom stats line ---
         stats_text = (f"HP: {self.player.health}"
