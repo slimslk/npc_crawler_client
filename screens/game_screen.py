@@ -125,10 +125,10 @@ class GameScreen(BaseScreen):
         # --- Bottom stats line ---
         stats_text = (f"HP: {self.player.health}"
                       f" ST: {self.player.energy}"
-                      f" SAT: {self.player.hungry}"
                       f" AM: {self.player.attack_modifier}"
                       f" AD: {self.player.attack_damage}"
-                      f" DEF: {self.player.defence}")
+                      f" DEF: {self.player.defence}"
+                      f" SAT: {self.get_hunger_state_message(self.player.hungry)}")
         stats_surface = self.font.render(stats_text, True, self._SCREEN_FONT_COLOR)
         self.screen.blit(stats_surface, (0, top_surface.get_height() + self._UI_OFFSET * 2 +
                                          self.display_map_height * (self.game_field_font_size + padding)))
@@ -145,3 +145,14 @@ class GameScreen(BaseScreen):
     def update_size(self, height, width):
         self.display_map_height = height
         self.display_map_width = width
+
+    def get_hunger_state_message(self, state):
+        state_message = {
+            100: "Sated",
+            80: "Hollow",
+            50: "Gnawing",
+            25: "Famished",
+            10: "Ravenous",
+            0: "Dying",
+        }
+        return state_message.get(state, "Starving")

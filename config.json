@@ -1,6 +1,6 @@
 {
-  "server_url": "http://app.doeh.dimmid.net:80",
-  "ws_url": "ws://app.doeh.dimmid.net:80/ws",
+  "server_url": "https://app-doeh.dimmid.net",
+  "ws_url": "wss://app-doeh.dimmid.net/ws",
   "max_messages": 1000,
   "display_settings": {
     "screen_resolution_width": 1200,
